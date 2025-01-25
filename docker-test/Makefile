@@ -1,8 +1,9 @@
-# add a build step and a run step for the docker container
+IMAGE_NAME=docker-test
+
 build:
-	docker build -t docker-test .
+	docker build -t $(IMAGE_NAME) .
 .PHONY: build
 
 run: build
-	docker run -p 8080:8080 docker-test
+	docker run -p 8080:8080 $(IMAGE_NAME)
 .PHONY: run
