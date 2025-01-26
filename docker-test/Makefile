@@ -7,7 +7,7 @@ run: build
 .PHONY: run
 
 test: build
-	docker-compose up --abort-on-container-exit \
-		acceptance-test
+	docker-compose run acceptance-test
 	docker-compose down
 .PHONY: test
+
