@@ -2,4 +2,4 @@ FROM golang:1.23.4-alpine
 WORKDIR /app
 COPY . .
 RUN go mod download
-CMD ["go", "test", "./test/acceptance/..."]
+CMD ["go", "test", "-v", "./test/acceptance/..."]
