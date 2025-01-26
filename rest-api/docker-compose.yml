@@ -1,0 +1,22 @@
+services:
+  app:
+    build: .
+    container_name: app
+    ports:
+      - "8080:8080"
+    networks:
+      - test
+
+  acceptance-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.acceptance
+    container_name: acceptance-test
+    depends_on:
+      - app
+    networks:
+      - test
+
+networks:
+  test:
+    driver: bridge
