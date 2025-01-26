@@ -3,16 +3,15 @@ package main
 import (
 	"net/http"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestServerIsRunning(t *testing.T) {
 	resp, err := http.Get("http://app:8080")
-	if err != nil {
-		t.Fatalf("Failed to reach server: %v", err)
-	}
+	require.NoError(t, err, "Failed to reach server")
 	defer resp.Body.Close()
 
-	if resp.StatusCode != http.StatusOK {
-		t.Errorf("Expected status code 200, got %d", resp.StatusCode)
-	}
+	assert.Equal(t, http.StatusOK, resp.StatusCode, "Expected status code 200")
 }
