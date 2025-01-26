@@ -1,9 +1,16 @@
-IMAGE_NAME=docker-test
-
 build:
-	docker build -t $(IMAGE_NAME) .
+	docker-compose build app
 .PHONY: build
 
 run: build
-	docker run -p 8080:8080 $(IMAGE_NAME)
+	docker-compose up app
 .PHONY: run
+
+test-build:
+	docker-compose build test
+.PHONY: test-build
+
+test: test-build
+	docker-compose up --abort-on-container-exit test
+	docker-compose down
+.PHONY: test
