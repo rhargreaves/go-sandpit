@@ -1,4 +1,4 @@
-module github.com/rhargreaves/go-sandpit/docker-test
+module github.com/rhargreaves/go-sandpit/http-server
 
 go 1.23.1
 
