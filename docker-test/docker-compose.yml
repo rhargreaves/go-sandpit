@@ -5,17 +5,18 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - test-network
+      - test
 
-  test:
+  acceptance-test:
     build:
       context: .
       dockerfile: Dockerfile.acceptance
+    container_name: acceptance-test
     depends_on:
       - app
     networks:
-      - test-network
+      - test
 
 networks:
-  test-network:
+  test:
     driver: bridge

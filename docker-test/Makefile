@@ -1,16 +1,13 @@
 build:
-	docker-compose build app
+	docker-compose build
 .PHONY: build
 
 run: build
 	docker-compose up app
 .PHONY: run
 
-test-build:
-	docker-compose build test
-.PHONY: test-build
-
-test: test-build
-	docker-compose up --abort-on-container-exit test
+test: build
+	docker-compose up --abort-on-container-exit \
+		acceptance-test
 	docker-compose down
 .PHONY: test
