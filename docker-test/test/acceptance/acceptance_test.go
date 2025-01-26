@@ -32,3 +32,10 @@ func TestTextContentReturned(t *testing.T) {
 	assert.Equal(t, "text/plain; charset=utf-8", resp.Header.Get("Content-Type"))
 	assert.Equal(t, "Hello, Docker with Go!\n", string(body))
 }
+
+func TestCustomHeaderReturned(t *testing.T) {
+	resp := getResponse(t)
+	defer resp.Body.Close()
+
+	assert.Equal(t, "blah", resp.Header.Get("Another-Header"))
+}

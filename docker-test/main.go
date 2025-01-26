@@ -6,6 +6,7 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Add("Another-Header", "blah")
 	fmt.Fprintln(w, "Hello, Docker with Go!")
 }
 
