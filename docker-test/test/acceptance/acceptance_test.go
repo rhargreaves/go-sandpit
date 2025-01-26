@@ -15,3 +15,11 @@ func TestServerIsRunning(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, resp.StatusCode, "Expected status code 200")
 }
+
+func TestTextContentReturned(t *testing.T) {
+	resp, err := http.Get("http://app:8080")
+	require.NoError(t, err, "Failed to reach server")
+	defer resp.Body.Close()
+
+	assert.Contains(t, resp.Header.Get("Content-Type"), "text/plain", "Hello, Docker with Go!")
+}
