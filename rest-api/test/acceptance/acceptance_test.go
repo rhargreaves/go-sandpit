@@ -39,3 +39,15 @@ func TestCustomHeaderReturned(t *testing.T) {
 
 	assert.Equal(t, "blah", resp.Header.Get("Another-Header"))
 }
+
+func TestJsonContentReturned(t *testing.T) {
+	resp, err := http.Get("http://app:8080/json")
+	require.NoError(t, err, "Failed to fetch URL")
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	require.NoError(t, err, "Failed to read response body")
+
+	assert.Equal(t, "application/json; charset=utf-8", resp.Header.Get("Content-Type"))
+	assert.JSONEq(t, `{"message":"Hello, Docker with Go!"}`, string(body))
+}
