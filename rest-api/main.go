@@ -1,16 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Add("Another-Header", "blah")
-	fmt.Fprintln(w, "Hello, Docker with Go!")
-}
-
 func main() {
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
+	r := gin.Default()
+	r.GET("/", func(c *gin.Context) {
+		c.Header("Another-Header", "blah")
+		c.String(200, "Hello, Docker with Go!\n")
+	})
+	r.Run(":8080")
 }
