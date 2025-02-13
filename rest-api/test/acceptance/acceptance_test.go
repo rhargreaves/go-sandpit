@@ -37,10 +37,10 @@ func TestCustomHeaderReturned(t *testing.T) {
 	resp := getResponse(t)
 	defer resp.Body.Close()
 
-	assert.Equal(t, "blah", resp.Header.Get("Another-Header"))
+	assert.Equal(t, "blah", resp.Header.Get("Arbitary-Header"))
 }
 
-func TestJsonContentReturned(t *testing.T) {
+func TestJsonMessageReturned(t *testing.T) {
 	resp, err := http.Get("http://app:8080/json")
 	require.NoError(t, err, "Failed to fetch URL")
 	defer resp.Body.Close()

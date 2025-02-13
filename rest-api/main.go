@@ -8,7 +8,7 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/", func(c *gin.Context) {
-		c.Header("Another-Header", "blah")
+		c.Header("Arbitary-Header", "blah")
 		c.String(200, "Hello, Docker with Go!\n")
 	})
 
